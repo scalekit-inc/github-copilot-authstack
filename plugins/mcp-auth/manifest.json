@@ -1,0 +1,27 @@
+{
+  "name": "mcp-auth",
+  "description": "Add OAuth 2.1 authorization to MCP servers using Scalekit.",
+  "version": "1.0.0",
+  "author": {
+    "name": "Scalekit Inc",
+    "email": "support@scalekit.com"
+  },
+  "homepage": "https://docs.scalekit.com",
+  "repository": "https://github.com/scalekit-inc/github-copilot-authstack",
+  "license": "MIT",
+  "main": "./src/index.ts",
+  "commands": [
+    {
+      "name": "setup",
+      "description": "Print the MCP OAuth setup checklist. Use when starting to add OAuth 2.1 to an MCP server. Accepts optional framework arg: express | fastapi | fastmcp."
+    },
+    {
+      "name": "generate",
+      "description": "Generate OAuth middleware code for a framework. Use when writing auth code. Requires one arg: express | fastapi | fastmcp."
+    },
+    {
+      "name": "validate",
+      "description": "Validate an MCP server's OAuth configuration. Use when testing auth setup. Requires one arg: the MCP server base URL."
+    }
+  ]
+}
