@@ -1,0 +1,19 @@
+{
+  "name": "github-copilot-authstack",
+  "owner": {
+    "name": "Scalekit Inc",
+    "email": "support@scalekit.com"
+  },
+  "metadata": {
+    "description": "GitHub Copilot CLI plugins for authentication",
+    "version": "1.0.0"
+  },
+  "plugins": [
+    {
+      "name": "mcp-auth",
+      "description": "Add OAuth 2.1 authorization to MCP servers using Scalekit.",
+      "version": "1.0.0",
+      "source": "./plugins/mcp-auth"
+    }
+  ]
+}
