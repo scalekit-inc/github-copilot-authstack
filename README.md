@@ -32,7 +32,11 @@ Add this marketplace to your Copilot CLI:
 copilot plugin marketplace add https://github.com/scalekit-inc/github-copilot-authstack
 ```
 
-List available plugins:
+```sh
+/plugin install scalekit-inc/claude-code-authstack:plugins/mcp-auth
+```
+
+List available plugins
 
 ```bash
 copilot plugin list
