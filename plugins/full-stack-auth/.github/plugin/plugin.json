@@ -1,0 +1,31 @@
+{
+  "name": "full-stack-auth",
+  "description": "Production-ready authentication flows (sign-up, login, logout, sessions) using Scalekit full-stack auth across common stacks.",
+  "version": "1.3.4",
+  "author": {
+    "name": "Scalekit Inc",
+    "email": "support@scalekit.com"
+  },
+  "homepage": "https://docs.scalekit.com",
+  "repository": "https://github.com/scalekit-inc/github-copilot-authstack",
+  "license": "MIT",
+  "keywords": ["authentication", "oauth", "full-stack", "sessions"],
+  "agents": [
+    "./agents"
+  ],
+  "skills": [
+    "./skills/full-stack-auth",
+    "./skills/implementing-scalekit-nextjs-auth",
+    "./skills/implementing-scalekit-django-auth",
+    "./skills/implementing-scalekit-go-auth",
+    "./skills/adding-api-key-auth",
+    "./skills/adding-oauth2-to-apis",
+    "./skills/manage-user-sessions",
+    "./skills/implementing-access-control",
+    "./skills/implementing-admin-portal",
+    "./skills/implement-logout",
+    "./skills/migrating-to-scalekit-auth",
+    "./skills/production-readiness-scalekit"
+  ],
+  "mcpServers": ".mcp.json"
+}
