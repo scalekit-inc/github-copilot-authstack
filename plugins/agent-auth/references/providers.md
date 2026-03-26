@@ -17,14 +17,16 @@ Agent Auth supports a wide range of popular business applications:
 
 | Category | Providers |
 |---|---|
-| **Google Workspace** | Gmail, Google Calendar, Google Drive, Google Docs, Google Sheets, Google Forms, Google Meet, Google Ads |
+| **Google Workspace** | Gmail, Google Calendar, Google Drive, Google Docs, Google Sheets, Google Slides, Google Forms, Google Meet, Google Ads |
 | **Microsoft 365** | Outlook, OneDrive, SharePoint, Microsoft Teams, Microsoft Excel, Microsoft Word, OneNote |
 | **Communication** | Slack, Zoom |
-| **Project Management** | Jira, Asana, Trello, Monday.com, ClickUp, Linear, Confluence |
-| **CRM & Sales** | Salesforce, HubSpot, Zendesk, Freshdesk, Intercom, Gong |
+| **Project Management** | Jira, Asana, Trello, Monday.com, ClickUp, Linear, Confluence, Harvest |
+| **CRM & Sales** | Salesforce, HubSpot, Zendesk, Freshdesk, Intercom, Gong, Apollo, Attio, Pipedrive, Attention, Chorus, Clari Copilot |
 | **Development** | GitHub |
-| **Productivity** | Notion, Airtable, Dropbox |
-| **Data & Analytics** | BigQuery, Snowflake, Fathom |
+| **Productivity** | Notion, Airtable, Dropbox, Granola, PhantomBuster |
+| **Data & Analytics** | BigQuery, Snowflake, Snowflake Key Auth, Fathom |
+| **Search** | Brave Search, Exa |
+| **Media** | Vimeo, YouTube |
 | **Service Management** | ServiceNow |
 
 For per-connector tool specifications, see [agent-connectors/README.md](agent-connectors/README.md).
