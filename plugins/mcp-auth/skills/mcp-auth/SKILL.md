@@ -69,7 +69,7 @@ MCP OAuth Setup:
 
 **Node.js:**
 ```bash
-npm install @scalekit-sdk/node@2.2.0-beta.1
+npm install @scalekit-sdk/node
 ```
 
 **Python:**
@@ -448,3 +448,9 @@ All examples include:
 - Executes tool calls for authorized requests
 
 This separation ensures clean boundaries: Scalekit handles identity and token issuance, your server focuses on business logic.
+
+## When to switch skills
+
+- Use `full-stack-auth` (in the full-stack-auth plugin) for browser-based authentication flows.
+- Use `production-readiness-scalekit` for a pre-launch MCP auth checklist.
+- Use a framework-specific sub-skill (`add-auth-fastmcp`, `express-mcp-server`, `fastapi-fastmcp`) for a guided implementation in your stack.
