@@ -1,0 +1,22 @@
+{
+  "name": "agentkit",
+  "description": "Authentication for AI agents. OAuth flows, token vault, 40+ connectors (Gmail, Slack, Salesforce, etc.), tool discovery, and live testing — so agents can act on behalf of users.",
+  "version": "2.0.0",
+  "author": {
+    "name": "Scalekit Inc",
+    "email": "support@scalekit.com"
+  },
+  "homepage": "https://docs.scalekit.com/agentkit/overview.md",
+  "repository": "https://github.com/scalekit-inc/github-copilot-authstack",
+  "license": "MIT",
+  "keywords": ["scalekit", "agentkit", "agent-auth", "oauth", "connectors", "tool-calling"],
+  "agents": ["./agents"],
+  "skills": [
+    "./skills/integrating-agentkit",
+    "./skills/discovering-connector-tools",
+    "./skills/testing-agentkit-tools",
+    "./skills/exposing-agentkit-via-mcp",
+    "./skills/production-readiness-agentkit"
+  ],
+  "mcpServers": ".mcp.json"
+}

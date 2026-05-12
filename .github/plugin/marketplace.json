@@ -5,39 +5,21 @@
     "email": "support@scalekit.com"
   },
   "metadata": {
-    "description": "GitHub Copilot CLI plugins for authentication",
+    "description": "Scalekit Auth Stack for GitHub Copilot — AgentKit and SaaSKit plugins.",
     "version": "1.0.0"
   },
   "plugins": [
     {
-      "name": "mcp-auth",
-      "description": "Add OAuth 2.1 authorization to MCP servers using Scalekit.",
-      "version": "1.0.0",
-      "source": "./plugins/mcp-auth"
+      "name": "agentkit",
+      "description": "Authentication for AI agents. OAuth flows, token vault, 40+ connectors (Gmail, Slack, Salesforce, etc.), tool discovery, and live testing — so agents can act on behalf of users.",
+      "version": "2.0.0",
+      "source": "./plugins/agentkit"
     },
     {
-      "name": "full-stack-auth",
-      "description": "Production-ready authentication flows (sign-up, login, logout, sessions) using Scalekit full-stack auth across common stacks.",
-      "version": "1.3.4",
-      "source": "./plugins/full-stack-auth"
-    },
-    {
-      "name": "agent-auth",
-      "description": "Implements Scalekit Agent Auth so AI agents can act in third-party apps (Gmail, Slack, Calendar, Notion) on behalf of users.",
-      "version": "1.5.2",
-      "source": "./plugins/agent-auth"
-    },
-    {
-      "name": "modular-sso",
-      "description": "Modular SSO flows using Scalekit for apps with existing user management, including IdP-initiated login and enterprise onboarding.",
-      "version": "1.1.4",
-      "source": "./plugins/modular-sso"
-    },
-    {
-      "name": "modular-scim",
-      "description": "SCIM webhook provisioning with Scalekit for real-time user and group lifecycle management.",
-      "version": "1.1.2",
-      "source": "./plugins/modular-scim"
+      "name": "saaskit",
+      "description": "Production-ready auth for B2B SaaS apps. Login, sessions, SSO (Okta, Azure AD, Google), SCIM provisioning, RBAC, MCP server auth, and API key management.",
+      "version": "2.0.0",
+      "source": "./plugins/saaskit"
     }
   ]
 }
