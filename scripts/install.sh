@@ -9,15 +9,16 @@ if ! command -v copilot >/dev/null 2>&1; then
 fi
 
 MARKETPLACE_SLUG="${COPILOT_AUTHSTACK_MARKETPLACE:-scalekit-inc/github-copilot-authstack}"
+MARKETPLACE_NAME="${MARKETPLACE_SLUG##*/}"
 OLD_PLUGINS=("agent-auth" "full-stack-auth" "mcp-auth" "modular-sso" "modular-scim")
 
 echo "Installing Scalekit Auth Stack for GitHub Copilot"
 echo "Marketplace: $MARKETPLACE_SLUG"
 echo
 
-copilot plugin marketplace add "$MARKETPLACE_SLUG" 2>/dev/null || true
-
-MARKETPLACE_NAME="${MARKETPLACE_SLUG##*/}"
+# Remove and re-add marketplace to ensure the latest version is fetched
+copilot plugin marketplace remove "$MARKETPLACE_NAME" 2>/dev/null || true
+copilot plugin marketplace add "$MARKETPLACE_SLUG"
 
 # Remove old plugin names from v1.x (now consolidated into agentkit + saaskit)
 for old in "${OLD_PLUGINS[@]}"; do
