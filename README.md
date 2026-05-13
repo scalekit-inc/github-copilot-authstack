@@ -39,8 +39,8 @@ Or add the marketplace manually:
 
 ```bash
 copilot plugin marketplace add scalekit-inc/github-copilot-authstack
-copilot plugin install agentkit
-copilot plugin install saaskit
+copilot plugin install agentkit@github-copilot-authstack
+copilot plugin install saaskit@github-copilot-authstack
 ```
 
 List available plugins:

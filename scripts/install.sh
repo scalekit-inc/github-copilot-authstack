@@ -17,13 +17,15 @@ echo
 
 copilot plugin marketplace add "$MARKETPLACE_SLUG"
 
+MARKETPLACE_NAME="${MARKETPLACE_SLUG##*/}"
+
 # Remove old plugin names from v1.x (now consolidated into agentkit + saaskit)
 for old in "${OLD_PLUGINS[@]}"; do
   copilot plugin uninstall "${old}" 2>/dev/null || true
 done
 
-copilot plugin install agentkit
-copilot plugin install saaskit
+copilot plugin install "agentkit@${MARKETPLACE_NAME}"
+copilot plugin install "saaskit@${MARKETPLACE_NAME}"
 
 cat <<EOF
 
