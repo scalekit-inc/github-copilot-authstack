@@ -29,7 +29,7 @@ Agent Auth supports a wide range of popular business applications:
 | **Media** | Vimeo, YouTube |
 | **Service Management** | ServiceNow |
 
-For per-connector tool specifications, see [agent-connectors/README.md](agent-connectors/README.md).
+For per-connector tool specifications, see the [AgentKit connectors catalog](https://docs.scalekit.com/agentkit/connectors/).
 
 ## Provider capabilities
 
@@ -187,5 +187,5 @@ Agent Auth normalizes provider-specific errors into consistent error responses:
 
 - [connections.md](connections.md) — how to configure authentication credentials for a provider
 - [connected-accounts.md](connected-accounts.md) — per-user account lifecycle and token management
-- [agent-connectors/README.md](agent-connectors/README.md) — detailed API tools for each provider
+- [AgentKit connectors catalog](https://docs.scalekit.com/agentkit/connectors/) — detailed API tools for each connector
 - [code-samples.md](code-samples.md) — implementation examples by framework
