@@ -10,13 +10,12 @@
   "repository": "https://github.com/scalekit-inc/github-copilot-authstack",
   "license": "MIT",
   "keywords": ["scalekit", "agentkit", "agent-auth", "oauth", "connectors", "tool-calling"],
-  "agents": ["./agents"],
   "skills": [
     "./skills/integrating-agentkit",
     "./skills/discovering-connector-tools",
-    "./skills/testing-agentkit-tools",
     "./skills/exposing-agentkit-via-mcp",
     "./skills/production-readiness-agentkit"
   ],
+  "hooks": "./hooks/hooks.json",
   "mcpServers": ".mcp.json"
 }

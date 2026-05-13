@@ -22,7 +22,9 @@
     "./skills/managing-saaskit-sessions",
     "./skills/migrating-to-saaskit",
     "./skills/adding-api-auth",
+    "./skills/testing-auth-setup",
     "./skills/production-readiness-saaskit"
   ],
+  "hooks": "./hooks/hooks.json",
   "mcpServers": ".mcp.json"
 }

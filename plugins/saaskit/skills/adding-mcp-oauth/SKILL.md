@@ -1,11 +1,11 @@
 ---
 name: adding-mcp-oauth
-description: Guides users through adding OAuth 2.1 authorization to Model Context Protocol (MCP) servers using Scalekit. Use when setting up MCP servers, implementing authentication for AI hosts like Claude Desktop, Cursor, or VS Code, or when users mention MCP security, OAuth, or Scalekit integration.
+description: Guides users through adding OAuth 2.1 authorization to Model Context Protocol (MCP) servers using Scalekit. Use when setting up MCP servers, implementing authentication for AI hosts like GitHub Copilot, Cursor, or VS Code, or when users mention MCP security, OAuth, or Scalekit integration.
 ---
 
 # Adding OAuth 2.1 Authorization to MCP Servers
 
-Secure your MCP server with production-ready OAuth 2.1 authorization using Scalekit. This enables authenticated access through AI hosts like Claude Desktop, Cursor, and VS Code.
+Secure your MCP server with production-ready OAuth 2.1 authorization using Scalekit. This enables authenticated access through AI hosts like GitHub Copilot, Cursor, and VS Code.
 
 ## Critical Prerequisites
 
@@ -46,7 +46,7 @@ app = create_streamable_http_app(server=mcp, streamable_http_path="/mcp")
 Notes:
 - The imports above match the **official** Python MCP SDK on PyPI (`mcp`). See: `https://pypi.org/project/mcp/1.9.1/`
 - The result is an **ASGI `app`** you run with an ASGI server (e.g. `uvicorn module:app`)—this is **Streamable HTTP**, not stdio.
-- SSE-only transports are not the same as Streamable HTTP; for OAuth with MCP hosts (Claude Desktop/Cursor/VS Code), use Streamable HTTP. See: `https://gofastmcp.com/python-sdk/fastmcp-server-http`
+- SSE-only transports are not the same as Streamable HTTP; for OAuth with MCP hosts (GitHub Copilot/Cursor/VS Code), use Streamable HTTP. See: `https://gofastmcp.com/python-sdk/fastmcp-server-http`
   - Example run: `uvicorn your_module:app --host 0.0.0.0 --port 8000`
 
 If your MCP server currently uses stdio transport, you must migrate to HTTP-based transport before implementing OAuth. See [MCP Transport Documentation](https://spec.modelcontextprotocol.io/specification/architecture/#transports) for migration guidance.
@@ -295,7 +295,7 @@ except Exception:
 
 ### Verify your integration
 
-Before testing with AI hosts, Claude Code will scan your project to determine
+Before testing with AI hosts, the coding agent will scan your project to determine
 the right URL to verify against. It will look for:
 
 - `RESOURCE_ID` or `resource` values in your code or `.env`
@@ -320,7 +320,7 @@ The response must include:
 WWW-Authenticate: Bearer realm="OAuth", resource_metadata="https://<your-domain>/.well-known/oauth-protected-resource"
 ```
 This is what triggers the MCP client's OAuth flow. A plain 401 without this header
-will cause AI hosts (Claude Desktop, Cursor, VS Code) to fail silently.
+will cause AI hosts (GitHub Copilot, Cursor, VS Code) to fail silently.
 
 **Check 3 – Confirm metadata endpoint is reachable:**
 ```bash
@@ -329,7 +329,7 @@ curl https://<your-domain>/.well-known/oauth-protected-resource
 Expected: JSON with `resource`, `authorization_servers`, and `scopes_supported`.
 
 ### Testing checklist (after verification passes)
-- [ ] Test with Claude Desktop
+- [ ] Test with GitHub Copilot
 - [ ] Test with Cursor
 - [ ] Test with VS Code
 - [ ] Verify token validation rejects invalid tokens
