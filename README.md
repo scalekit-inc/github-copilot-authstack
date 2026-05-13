@@ -29,28 +29,24 @@ Setting up auth for B2B and AI apps is complex. This marketplace adds the comple
 
 ### Installation
 
-Add this marketplace to your Copilot CLI:
+Use the one-command bootstrap installer:
 
 ```bash
-copilot plugin marketplace add https://github.com/scalekit-inc/github-copilot-authstack
+curl -fsSL https://raw.githubusercontent.com/scalekit-inc/github-copilot-authstack/main/install.sh | bash
 ```
 
-Install a plugin:
+Or add the marketplace manually:
 
 ```bash
-copilot plugin install scalekit-inc/github-copilot-authstack:plugins/mcp-auth
+copilot plugin marketplace add scalekit-inc/github-copilot-authstack
+copilot plugin install agentkit
+copilot plugin install saaskit
 ```
 
 List available plugins:
 
 ```bash
 copilot plugin list
-```
-
-Run a skill:
-
-```bash
-copilot mcp-auth add-auth-fastmcp
 ```
 
 ---
@@ -62,6 +58,7 @@ copilot mcp-auth add-auth-fastmcp
 ├── plugins/
 │   ├── agentkit/         # AI agent authentication (AgentKit)
 │   └── saaskit/          # B2B SaaS authentication (SaaSKit)
+├── scripts/              # Install scripts
 ├── images/               # Documentation images
 ├── AGENTS.md             # Contribution guidelines
 └── LICENSE               # MIT License
