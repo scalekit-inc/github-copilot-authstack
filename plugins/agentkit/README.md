@@ -4,6 +4,8 @@ Authentication for AI agents. This plugin brings Scalekit AgentKit into Codex so
 
 AgentKit handles the full OAuth lifecycle — authorization, token vault, and automatic refresh — across 40+ connectors (Gmail, Slack, Salesforce, Notion, and more).
 
+The plugin treats live AgentKit metadata as the source of truth for tool names, `input_schema`, and `output_schema`. Per-connector reference docs in `references/agent-connectors/` provide curated guidance on scopes, quirks, and tool categories.
+
 ## Skills
 
 - `integrating-agentkit` — Core integration: SDK setup, connected accounts, OAuth flows, token fetching, downstream API calls, and agent framework examples.
