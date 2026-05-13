@@ -33,12 +33,11 @@ Installed plugins:
   agentkit  — AI agent authentication (connectors, tool discovery, token vault)
   saaskit   — B2B SaaS authentication (login, SSO, SCIM, RBAC, MCP server auth)
 
-To activate the plugins in GitHub Copilot:
-1. Open GitHub Copilot (VS Code, CLI, or your preferred client).
-2. Run \`copilot plugin list\` to verify both plugins are installed.
-3. Set update policy to "Auto-update (recommended)" to stay current.
+What to do next in GitHub Copilot:
+- Look for "agentkit" and "saaskit" in your plugin settings.
+- Make sure both are installed and enabled.
+- Set the update policy to auto-update so you always have the latest skills.
 
-To verify:
-  Run \`copilot plugin list\` and confirm agentkit and saaskit are present.
-  Try a skill: ask "help me integrate agentkit" or "test my auth setup".
+To verify it works:
+  Ask Copilot to "help me integrate agentkit" or "test my auth setup".
 EOF
