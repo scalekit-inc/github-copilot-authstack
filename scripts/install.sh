@@ -15,7 +15,7 @@ echo "Installing Scalekit Auth Stack for GitHub Copilot"
 echo "Marketplace: $MARKETPLACE_SLUG"
 echo
 
-copilot plugin marketplace add "$MARKETPLACE_SLUG"
+copilot plugin marketplace add "$MARKETPLACE_SLUG" 2>/dev/null || true
 
 MARKETPLACE_NAME="${MARKETPLACE_SLUG##*/}"
 
