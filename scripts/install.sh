@@ -16,12 +16,7 @@ echo "Installing Scalekit Auth Stack for GitHub Copilot"
 echo "Marketplace: $MARKETPLACE_SLUG"
 echo
 
-# Overwrite any previously registered version of this marketplace
-echo "Updating marketplace..."
-copilot plugin marketplace remove "$MARKETPLACE_NAME" 2>/dev/null || true
-copilot plugin marketplace add "$MARKETPLACE_SLUG" >/dev/null
-echo "Marketplace \"${MARKETPLACE_NAME}\" is up to date."
-echo
+copilot plugin marketplace add "$MARKETPLACE_SLUG"
 
 # Remove old plugin names from v1.x (now consolidated into agentkit + saaskit)
 for old in "${OLD_PLUGINS[@]}"; do
