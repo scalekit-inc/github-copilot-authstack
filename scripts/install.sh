@@ -17,10 +17,8 @@ echo "Marketplace: $MARKETPLACE_SLUG"
 echo
 
 if ! copilot plugin marketplace add "$MARKETPLACE_SLUG" 2>/dev/null; then
-  echo "Marketplace \"${MARKETPLACE_NAME}\" is already registered."
-  echo "To get the latest plugins, enable auto-update or run:"
-  echo "  copilot plugin update --all"
-  echo
+  echo "Marketplace already registered. Updating..."
+  copilot plugin update --all
 fi
 
 # Remove old plugin names from v1.x (now consolidated into agentkit + saaskit)
