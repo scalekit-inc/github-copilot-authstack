@@ -20,6 +20,36 @@
       "description": "Production-ready auth for B2B SaaS apps. Login, sessions, SSO (Okta, Azure AD, Google), SCIM provisioning, RBAC, MCP server auth, and API key management.",
       "version": "2.0.0",
       "source": "./plugins/saaskit"
+    },
+    {
+      "name": "agent-auth",
+      "description": "Alias for agentkit — AI agent authentication with OAuth flows, token vault, and 40+ connectors.",
+      "version": "2.0.0",
+      "source": "./plugins/agent-auth"
+    },
+    {
+      "name": "mcp-auth",
+      "description": "Alias for saaskit — includes OAuth 2.1 for MCP servers alongside login, SSO, SCIM, and RBAC.",
+      "version": "2.0.0",
+      "source": "./plugins/mcp-auth"
+    },
+    {
+      "name": "full-stack-auth",
+      "description": "Alias for saaskit — full-stack authentication including login, sessions, SSO, SCIM, and RBAC.",
+      "version": "2.0.0",
+      "source": "./plugins/full-stack-auth"
+    },
+    {
+      "name": "modular-sso",
+      "description": "Alias for saaskit — enterprise SSO is now part of the unified SaaSKit plugin.",
+      "version": "2.0.0",
+      "source": "./plugins/modular-sso"
+    },
+    {
+      "name": "modular-scim",
+      "description": "Alias for saaskit — SCIM provisioning is now part of the unified SaaSKit plugin.",
+      "version": "2.0.0",
+      "source": "./plugins/modular-scim"
     }
   ]
 }
