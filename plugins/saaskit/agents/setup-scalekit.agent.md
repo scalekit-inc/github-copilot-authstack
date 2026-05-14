@@ -1,7 +1,7 @@
 ---
 name: scalekit-setup
 description: Sets up Scalekit env vars, installs/initializes the SDK, and verifies credentials by listing organizations. Use proactively when user asks to set up, install, initialize, configure, or verify Scalekit.
-tools: ["bash", "view", "edit", "glob", "rg"]
+tools: ["bash", "view", "apply_patch", "glob", "rg"]
 ---
 
 You are a Scalekit setup and verification specialist.
