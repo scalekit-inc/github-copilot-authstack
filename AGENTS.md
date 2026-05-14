@@ -390,7 +390,7 @@ copilot plugin marketplace add ./github-copilot-authstack
 copilot plugin list
 
 # Install a specific plugin
-copilot plugin install mcp-auth
+copilot plugin install agentkit@github-copilot-authstack
 
 # Test the plugin
 copilot <agent-name> "Your prompt"
@@ -469,11 +469,11 @@ Documentation
 | Artifact | Convention | Example |
 |---|---|---|
 | Marketplace name | `kebab-case` | `team-plugins` |
-| Plugin name | `kebab-case` | `mcp-auth` |
+| Plugin name | `kebab-case` | `agentkit` |
 | Agent filename | `<name>.agent.md` | `scalekit-mcp-auth-troubleshooter.agent.md` |
 | Agent ID | derived from filename | `scalekit-mcp-auth-troubleshooter` |
-| Skill directory | `kebab-case` | `mcp-auth` |
-| Skill name | defined in SKILL.md | `MCP Auth` |
+| Skill directory | `kebab-case` | `integrating-agentkit` |
+| Skill name | defined in SKILL.md | `integrating-agentkit` |
 | MCP server name | `kebab-case` | `scalekit-auth-server` |
 
 **Note**: All file paths must use forward slashes (`/`) regardless of operating system.
@@ -505,7 +505,7 @@ copilot plugin marketplace add octo-org/octo-repo
 copilot plugin list
 
 # Install a specific plugin
-copilot plugin install mcp-auth
+copilot plugin install agentkit@github-copilot-authstack
 
 # Use an agent from the plugin
 copilot <agent-name> "Your prompt"

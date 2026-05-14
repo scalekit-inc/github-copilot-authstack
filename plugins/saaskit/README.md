@@ -1,6 +1,6 @@
 # SaaSKit for GitHub Copilot
 
-Production-ready auth for B2B SaaS apps. This plugin brings Scalekit SaaSKit into Codex to build production-ready B2B authentication. It covers login, sessions, SSO, SCIM provisioning, MCP server auth, API keys, and more.
+Production-ready auth for B2B SaaS apps. This plugin brings Scalekit SaaSKit into GitHub Copilot to build production-ready B2B authentication. It covers login, sessions, SSO, SCIM provisioning, MCP server auth, API keys, and more.
 
 ## Skills
 

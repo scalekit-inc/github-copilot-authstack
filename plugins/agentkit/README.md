@@ -1,6 +1,6 @@
 # AgentKit for GitHub Copilot
 
-Authentication for AI agents. This plugin brings Scalekit AgentKit into Codex so agents can connect users to third-party apps, discover the right tools, and execute authenticated tool calls on their behalf.
+Authentication for AI agents. This plugin brings Scalekit AgentKit into GitHub Copilot so agents can connect users to third-party apps, discover the right tools, and execute authenticated tool calls on their behalf.
 
 AgentKit handles the full OAuth lifecycle — authorization, token vault, and automatic refresh — across 40+ connectors (Gmail, Slack, Salesforce, Notion, and more).
 
