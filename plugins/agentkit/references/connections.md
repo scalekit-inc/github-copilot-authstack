@@ -427,7 +427,7 @@ Use templates for common connection patterns:
 }
 ```
 
-Next, learn how to create and manage [Connected accounts](/agent-auth/connected-accounts) that use these connections to authenticate and execute tools for your users.
+Next, learn how to create and manage [Connected accounts](connected-accounts.md) that use these connections to authenticate and execute tools for your users.
 
 ## Related documentation
 
