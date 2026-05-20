@@ -1,6 +1,6 @@
 ---
 name: adding-mcp-oauth
-description: Guides users through adding OAuth 2.1 authorization to Model Context Protocol (MCP) servers using Scalekit. Use when setting up MCP servers, implementing authentication for AI hosts like GitHub Copilot, Cursor, or VS Code, or when users mention MCP security, OAuth, or Scalekit integration.
+description: Adds OAuth 2.1 authorization to Model Context Protocol servers using Scalekit. Covers Streamable HTTP transport, token validation middleware, and scope-based authorization for Node.js and Python. Use when securing MCP servers, implementing authentication for AI hosts like GitHub Copilot or Cursor.
 ---
 
 # Adding OAuth 2.1 Authorization to MCP Servers

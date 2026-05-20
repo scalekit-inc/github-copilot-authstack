@@ -1,6 +1,6 @@
 ---
 name: managing-saaskit-sessions
-description: Manages Scalekit-backed user sessions by securely storing access/refresh/ID tokens (with encryption and correct cookie attributes), validating access tokens on every request, transparently refreshing tokens in middleware, and optionally revoking sessions remotely via Scalekit session APIs. Use when building session persistence for only for web apps. For SPAs this is NOT the skill.
+description: Manages Scalekit SaaSKit user sessions by securely storing tokens, validating access tokens on requests, refreshing tokens in middleware, and revoking sessions via Scalekit APIs. Use when building session persistence for web apps or auditing session management.
 ---
 
 # Manage user sessions (Scalekit FSA)

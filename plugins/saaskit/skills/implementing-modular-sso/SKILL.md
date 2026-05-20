@@ -1,6 +1,6 @@
 ---
 name: implementing-modular-sso
-description: Implements complete SSO and authentication flows using Scalekit. Handles modular SSO, IdP-initiated login, user session management, and enterprise customer onboarding. Use when adding authentication, SSO, SAML, OIDC, or user login to applications.
+description: Implements enterprise SSO and authentication flows using Scalekit, including modular SSO (SAML/OIDC), IdP-initiated login, and admin portal for self-serve configuration. Use when adding SSO, integrating identity providers like Okta or Azure AD, or embedding the Scalekit admin portal.
 ---
 
 # Implement SSO as a Modular

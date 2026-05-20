@@ -1,6 +1,6 @@
 ---
 name: implementing-saaskit-python
-description: Implements Scalekit authentication in a Django project using the patterns from scalekit-inc/scalekit-django-auth-example. Handles login, OAuth callback, Django session storage, automatic token refresh via middleware, logout, and permission-based route protection using decorators. Use when adding auth views, protecting URLs, managing sessions, or checking permissions in a Django + Scalekit codebase.
+description: Implements Scalekit SaaSKit authentication in Python web frameworks (Django, FastAPI, or Flask) using scalekit-sdk-python. Use when adding auth to a Django, FastAPI, or Flask project, or when the user mentions Python web authentication with Scalekit.
 ---
 
 # Scalekit Auth — Django

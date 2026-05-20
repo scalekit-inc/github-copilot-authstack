@@ -1,6 +1,6 @@
 ---
 name: implementing-access-control
-description: Implements server-side RBAC and permission checks by validating and decoding access tokens, extracting roles/permissions, and enforcing them with middleware/decorators at route boundaries. Use when building authorization around Scalekit tokens that embed roles and permissions.
+description: Implements server-side RBAC and permission checks by validating access tokens, extracting roles and permissions, and enforcing them with middleware or decorators. Use when building authorization around Scalekit tokens.
 ---
 
 # Implementing access control (Scalekit FSA)
