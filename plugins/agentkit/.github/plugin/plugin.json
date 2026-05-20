@@ -14,7 +14,8 @@
     "./skills/integrating-agentkit",
     "./skills/discovering-connector-tools",
     "./skills/exposing-agentkit-via-mcp",
-    "./skills/production-readiness-agentkit"
+    "./skills/production-readiness-agentkit",
+    "./skills/scalekit-code-doctor"
   ],
   "hooks": "./hooks/hooks.json",
   "mcpServers": ".mcp.json"
