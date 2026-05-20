@@ -216,7 +216,7 @@ Use `reverse('auth_app:dashboard')` / `{% url 'auth_app:login' %}` in templates.
 ## Install
 
 ```bash
-pip install scalekit python-dotenv django
+pip install scalekit-sdk-python python-dotenv django
 python manage.py migrate   # Creates session table (db.sqlite3, zero-config)
 python manage.py runserver
 ```

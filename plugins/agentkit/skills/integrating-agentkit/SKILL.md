@@ -297,8 +297,6 @@ For comprehensive documentation on connected accounts lifecycle, states, and API
 
 For code samples and implementation examples by framework, see [code-samples.md](../../references/code-samples.md).
 
-For an overview of supported providers and their capabilities, see [providers.md](../../references/providers.md).
-
-For comprehensive token management including refresh, security, and monitoring, see [token-management.md](../../references/token-management.md).
+For an overview of supported connectors and their capabilities, see [connectors.md](../../references/connectors.md).
 
 For configuring your own OAuth credentials per connector (whitelabeling, dedicated quotas), see [byoc.md](../../references/byoc.md).
