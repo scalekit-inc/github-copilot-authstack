@@ -6,13 +6,25 @@ AgentKit handles the full OAuth lifecycle — authorization, token vault, and au
 
 The plugin treats live AgentKit metadata as the source of truth for tool names, `input_schema`, and `output_schema`. For per-connector details, see the [AgentKit connectors catalog](https://docs.scalekit.com/agentkit/connectors/).
 
+## Installation
+
+Add the marketplace and install this plugin:
+
+```bash
+copilot plugin marketplace add scalekit-inc/github-copilot-authstack
+copilot plugin install agentkit@github-copilot-authstack
+```
+
+Or use the one-command bootstrap from the [root README](../../README.md).
+
 ## Skills
 
 - `integrating-agentkit` — Core integration: SDK setup, connected accounts, OAuth flows, token fetching, downstream API calls, and agent framework examples.
 - `discovering-connector-tools` — Uses live AgentKit metadata to find tools, inspect schemas, and narrow the tool set.
 - `exposing-agentkit-via-mcp` — Exposes AgentKit tools through MCP for MCP-compatible runtimes.
 - `production-readiness-agentkit` — Structured production readiness checklist for AgentKit integrations.
-- `/agentkit:scalekit-code-doctor` — Diagnoses SDK usage issues, import errors, and common mistakes across AgentKit and SaaSKit.
+- `/saaskit:scalekit-code-doctor (cross-plugin)`
+  Diagnoses SDK usage issues, import errors, and common mistakes across AgentKit and SaaSKit. Requires the saaskit plugin.
 
 ## Configuration
 

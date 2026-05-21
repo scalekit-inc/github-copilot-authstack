@@ -2,6 +2,17 @@
 
 Production-ready auth for B2B SaaS apps. This plugin brings Scalekit SaaSKit into GitHub Copilot to build production-ready B2B authentication. It covers login, sessions, SSO, SCIM provisioning, MCP server auth, API keys, and more.
 
+## Installation
+
+Add the marketplace and install this plugin:
+
+```bash
+copilot plugin marketplace add scalekit-inc/github-copilot-authstack
+copilot plugin install saaskit@github-copilot-authstack
+```
+
+Or use the one-command bootstrap from the [root README](../../README.md).
+
 ## Skills
 
 - `implementing-saaskit` — Core auth flow: login, signup, callback, token exchange, session management, logout. Framework references for Go, Spring Boot, Laravel.
