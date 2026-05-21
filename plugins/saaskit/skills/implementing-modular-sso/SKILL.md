@@ -306,8 +306,8 @@ const accessTokenClaims = await scalekit.validateToken(result.accessToken);
 
 **Python:**
 ```python
-id_token_claims = scalekit.validate_token(result['id_token'])
-access_token_claims = scalekit.validate_token(result['access_token'])
+id_token_claims = scalekit.validate_access_token_and_get_claims(result['id_token'])
+access_token_claims = scalekit.validate_access_token_and_get_claims(result['access_token'])
 ```
 
 ### Token Structure
