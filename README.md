@@ -2,8 +2,8 @@
 
 <img src="./images/scalekit.jpg" alt="Scalekit" height="64">
 
-<p><strong>Scalekit Auth Plugins for GitHub Copilot CLI — the auth stack for agents.</strong><br>
-Add MCP Auth and tool-calling to your MCP servers from GitHub Copilot CLI.</p>
+<p><strong>Scalekit Auth Stack for GitHub Copilot — AgentKit and SaaSKit plugins.</strong><br>
+Add agent auth, tool calling, SSO, SCIM, MCP auth, and session management from GitHub Copilot.</p>
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](./LICENSE)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](https://github.com/scalekit-inc/github-copilot-authstack/pulls)
@@ -14,46 +14,33 @@ Add MCP Auth and tool-calling to your MCP servers from GitHub Copilot CLI.</p>
 
 ---
 
-A GitHub Copilot CLI plugin marketplace for adding OAuth 2.1 authorization and tool-calling to MCP (Model Context Protocol) servers using [Scalekit](https://scalekit.com).
+Setting up auth for B2B and AI apps is complex. This marketplace adds the complete Scalekit auth stack to your projects — whether that's an AI agent, a B2B SaaS app, or an MCP server — directly from GitHub Copilot.
 
 ---
 
-### Plugins
+### Available Plugins
 
-#### mcp-auth
-
-Guides and implementation patterns for securing MCP servers with OAuth 2.1. Covers multiple frameworks so you can pick the right approach for your stack.
-
-**Skills:**
-
-| Skill | Description |
-|-------|-------------|
-| `mcp-auth` | Comprehensive guide — HTTP transport, token validation, scope-based auth |
-| `add-auth-fastmcp` | Simplest path: FastMCP + Scalekit provider in ~5 lines |
-| `express-mcp-server` | Express.js with custom middleware and fine-grained token control |
-| `fastapi-fastmcp` | FastAPI + FastMCP for Python apps needing advanced authorization |
-
-**Agents:**
-
-| Agent | Description |
-|-------|-------------|
-| `setup-scalekit` | Sets up Scalekit env vars, installs the SDK, and verifies credentials |
-| `scalekit-mcp-auth-troubleshooter` | Diagnoses MCP auth issues (handshake, CORS, cached clients, port limits) |
+| Plugin | Description |
+|--------|-------------|
+| **AgentKit** | Authentication for AI agents. OAuth flows, token vault, 100+ connectors (Gmail, Slack, Salesforce, etc.), tool discovery, and live testing — so agents can act on behalf of users. |
+| **SaaSKit** | Production-ready auth for B2B SaaS apps. Login, sessions, SSO (Okta, Azure AD, Google), SCIM provisioning, RBAC, MCP server auth, and API key management. |
 
 ---
 
 ### Installation
 
-Add this marketplace to your Copilot CLI:
+Use the one-command bootstrap installer:
 
 ```bash
-copilot plugin marketplace add https://github.com/scalekit-inc/github-copilot-authstack
+curl -fsSL https://raw.githubusercontent.com/scalekit-inc/github-copilot-authstack/main/install.sh | bash
 ```
 
-Install a plugin:
+Or add the marketplace manually:
 
 ```bash
-copilot plugin install scalekit-inc/github-copilot-authstack:plugins/mcp-auth
+copilot plugin marketplace add scalekit-inc/github-copilot-authstack
+copilot plugin install agentkit@github-copilot-authstack
+copilot plugin install saaskit@github-copilot-authstack
 ```
 
 List available plugins:
@@ -62,25 +49,19 @@ List available plugins:
 copilot plugin list
 ```
 
-Run a skill:
-
-```bash
-copilot mcp-auth add-auth-fastmcp
-```
-
 ---
 
-### Repository Layout
+### Repository Structure
 
 ```
-.github/plugin/marketplace.json   Marketplace manifest
-plugins/
-  mcp-auth/
-    agents/                        Copilot agents
-    skills/                        Copilot skills
-    .github/plugin/plugin.json     Plugin manifest
-    .mcp.json                      MCP server config
-AGENTS.md                          Non-negotiable rules for contributors
+.
+├── plugins/
+│   ├── agentkit/         # AI agent authentication (AgentKit)
+│   └── saaskit/          # B2B SaaS authentication (SaaSKit)
+├── scripts/              # Install scripts
+├── images/               # Documentation images
+├── AGENTS.md             # Contribution guidelines
+└── LICENSE               # MIT License
 ```
 
 ---
@@ -89,7 +70,7 @@ AGENTS.md                          Non-negotiable rules for contributors
 
 - [Scalekit account](https://scalekit.com) with `client_id` and `client_secret`
 - GitHub Copilot CLI installed and configured
-- Project where you want to add MCP authentication
+- Project where you want to add authentication
 
 ---
 
@@ -98,8 +79,8 @@ AGENTS.md                          Non-negotiable rules for contributors
 #### Documentation
 
 - [Scalekit Documentation](https://docs.scalekit.com) — Complete guides and API reference
-- [MCP Auth Guide](https://docs.scalekit.com/mcp-auth/quickstart/) — Secure MCP servers
-- [Agent Auth Guide](https://docs.scalekit.com/agent-auth/quickstart/) — Authentication for AI agents
+- [MCP Auth guide](https://docs.scalekit.com/authenticate/mcp/quickstart/) — Secure MCP servers
+- [AgentKit overview](https://docs.scalekit.com/agentkit/overview.md) — Connect agents to authenticated tools
 
 #### Resources
 
