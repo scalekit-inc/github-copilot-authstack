@@ -1,17 +1,9 @@
 ---
 name: managing-saaskit-sessions
-description: Manages Scalekit SaaSKit user sessions by securely storing tokens, validating access tokens on requests, refreshing tokens in middleware, and revoking sessions via Scalekit APIs. Use when building session persistence for web apps or auditing session management.
+description: Manages Scalekit SaaSKit user sessions by securely storing tokens, validating access tokens on requests, refreshing tokens in middleware, and revoking sessions via Scalekit APIs. Use when building session persistence, implementing login/logout, managing cookies, handling JWT tokens, fixing session expiry, or auditing session security in a Scalekit web app.
 ---
 
-# Manage user sessions (Scalekit FSA)
-
-## Skill contract
-This SKILL.md must include `name` and `description` frontmatter fields, and the description should be written in third person for reliable skill discovery.
-
-## What “session management” means here
-After successful authentication, the app receives session tokens (typically access + refresh, and sometimes an ID token) that determine how long the user stays signed in and whether refresh can happen without re-authentication.
-
-This skill implements a secure default for traditional web apps (encrypted HttpOnly cookies) and also supports SPA/mobile patterns (access token in memory + `Authorization: Bearer` headers).
+# SaaSKit Session Management
 
 ## Inputs to collect (ask before coding)
 - App type: traditional server-rendered web app, SPA, mobile app, or hybrid.
@@ -25,7 +17,7 @@ This skill implements a secure default for traditional web apps (encrypted HttpO
 ## Non-negotiable security rules (defaults)
 - Store access and refresh tokens separately.
 - Use HttpOnly cookies for tokens in traditional web apps to reduce XSS exposure.
-- Use `Secure` in production (HTTPS-only) and set `SameSite` to `Strict` (or `Lax` if Strict breaks auth redirects).
+- Use `Secure` in production (HTTPS-only) and set `SameSite` to `Lax` (required for OAuth callback redirects to work correctly; `Strict` breaks auth flows).
 - Scope cookies with `Path` to reduce exposure:
   - Access token cookie: scope to `/api` (or your protected routes) when possible.
   - Refresh token cookie: scope to the refresh endpoint only (example `/auth/refresh`).
@@ -63,7 +55,7 @@ res.cookie("accessToken", encAccess, {
   maxAge: (expiresIn - 60) * 1000, // clock-skew buffer
   httpOnly: true,
   secure: process.env.NODE_ENV === "production",
-  sameSite: "strict",
+  sameSite: "lax",
   path: "/api",
 });
 
@@ -71,7 +63,7 @@ res.cookie("accessToken", encAccess, {
 res.cookie("refreshToken", encRefresh, {
   httpOnly: true,
   secure: process.env.NODE_ENV === "production",
-  sameSite: "strict",
+  sameSite: "lax",
   path: "/auth/refresh",
 });
 
@@ -80,7 +72,7 @@ if (idToken) {
   res.cookie("idToken", idToken, {
     httpOnly: true,
     secure: process.env.NODE_ENV === "production",
-    sameSite: "strict",
+    sameSite: "lax",
     path: "/",
   });
 }
@@ -103,7 +95,7 @@ resp.set_cookie(
   max_age=auth_result.expires_in - 60,
   httponly=True,
   secure=os.environ.get("FLASK_ENV") == "production",
-  samesite="Strict",
+  samesite="Lax",
   path="/api",
 )
 
@@ -112,7 +104,7 @@ resp.set_cookie(
   enc_refresh,
   httponly=True,
   secure=os.environ.get("FLASK_ENV") == "production",
-  samesite="Strict",
+  samesite="Lax",
   path="/auth/refresh",
 )
 
@@ -122,7 +114,7 @@ if getattr(auth_result, "id_token", None):
     auth_result.id_token,
     httponly=True,
     secure=os.environ.get("FLASK_ENV") == "production",
-    samesite="Strict",
+    samesite="Lax",
     path="/",
   )
 ```
@@ -133,7 +125,7 @@ if getattr(auth_result, "id_token", None):
 encAccess := encrypt(accessToken)
 encRefresh := encrypt(refreshToken)
 
-c.SetSameSite(http.SameSiteStrictMode)
+c.SetSameSite(http.SameSiteLaxMode)
 
 c.SetCookie("accessToken", encAccess, expiresIn-60, "/api", "", isProd(), true)
 c.SetCookie("refreshToken", encRefresh, 0, "/auth/refresh", "", isProd(), true)
@@ -204,14 +196,14 @@ export async function verifySession(req, res, next) {
       maxAge: (authResult.expiresIn - 60) * 1000,
       httpOnly: true,
       secure: process.env.NODE_ENV === "production",
-      sameSite: "strict",
+      sameSite: "lax",
       path: "/api",
     });
 
     res.cookie("refreshToken", encrypt(authResult.refreshToken), {
       httpOnly: true,
       secure: process.env.NODE_ENV === "production",
-      sameSite: "strict",
+      sameSite: "lax",
       path: "/auth/refresh",
     });
 
@@ -252,9 +244,9 @@ def verify_session(f):
       resp = make_response(f(*args, **kwargs))
       resp.set_cookie("accessToken", encrypt(auth_result.access_token),
                       max_age=auth_result.expires_in - 60, httponly=True,
-                      secure=is_prod(), samesite="Strict", path="/api")
+                      secure=is_prod(), samesite="Lax", path="/api")
       resp.set_cookie("refreshToken", encrypt(auth_result.refresh_token),
-                      httponly=True, secure=is_prod(), samesite="Strict", path="/auth/refresh")
+                      httponly=True, secure=is_prod(), samesite="Lax", path="/auth/refresh")
       return resp
     except Exception:
       return jsonify({"error": "Authentication failed"}), 401
@@ -294,7 +286,7 @@ func VerifySession() gin.HandlerFunc {
       return
     }
 
-    c.SetSameSite(http.SameSiteStrictMode)
+    c.SetSameSite(http.SameSiteLaxMode)
     c.SetCookie("accessToken", encrypt(authResult.AccessToken), authResult.ExpiresIn-60, "/api", "", isProd(), true)
     c.SetCookie("refreshToken", encrypt(authResult.RefreshToken), 0, "/auth/refresh", "", isProd(), true)
 
@@ -349,3 +341,9 @@ await scalekit.session.revokeAllUserSessions("usr_1234567890123456");
 - Refresh token accidentally sent to all endpoints (missing `Path=/auth/refresh`).
 - Middleware refreshes but does not rotate tokens (misses theft detection benefits).
 - SPA stores access token in localStorage (higher XSS risk) when memory storage was feasible.
+
+## When to switch skills
+
+- Use `implementing-saaskit` for the initial auth setup that produces the tokens.
+- Use `implementing-access-control` for RBAC checks on the validated session.
+- Use `production-readiness-saaskit` to audit session security before launch.

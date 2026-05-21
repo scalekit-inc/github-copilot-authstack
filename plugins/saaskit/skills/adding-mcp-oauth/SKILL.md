@@ -1,55 +1,19 @@
 ---
 name: adding-mcp-oauth
-description: Adds OAuth 2.1 authorization to Model Context Protocol servers using Scalekit. Covers Streamable HTTP transport, token validation middleware, and scope-based authorization for Node.js and Python. Use when securing MCP servers, implementing authentication for AI hosts like GitHub Copilot or Cursor.
+description: Guides users through adding OAuth 2.1 authorization to MCP servers using Scalekit — configures discovery endpoints, sets up token validation middleware, and enables scope-based tool authorization. Use when setting up MCP servers, implementing authentication for AI hosts like Claude Desktop, Cursor, or VS Code, or when users mention MCP security, OAuth, or Scalekit integration.
 ---
 
 # Adding OAuth 2.1 Authorization to MCP Servers
 
-Secure your MCP server with production-ready OAuth 2.1 authorization using Scalekit. This enables authenticated access through AI hosts like GitHub Copilot, Cursor, and VS Code.
+## Prerequisite: HTTP transport
 
-## Critical Prerequisites
+MCP OAuth requires **Streamable HTTP** transport. Stdio does not support OAuth.
 
-⚠️ **MCP OAuth requires HTTP-based transport (Streamable HTTP)**: OAuth 2.1 authentication only works when your MCP server is exposed over **HTTP** using the **Streamable HTTP** transport. The standard `StdioServerTransport` (stdin/stdout) does **not** support OAuth flows.
+**Node.js:** Use `StreamableHTTPServerTransport` from `@modelcontextprotocol/sdk/server/streamableHttp.js`
 
-**Node.js requirement:**
-```javascript
-import { StreamableHTTPServerTransport } from '@modelcontextprotocol/sdk/server/streamableHttp.js';
-```
+**Python:** Use `mcp.streamable_http_app(path="/mcp")` and run with `uvicorn module:app`
 
-**Python requirement (Streamable HTTP via ASGI app):**
-
-In Python, the practical equivalent of Node’s `StreamableHTTPServerTransport` is to **create a Streamable HTTP ASGI app** and run it behind an ASGI server (Uvicorn/Hypercorn). The official Python SDK exposes this as `streamable_http_app()` (convenience) or `create_streamable_http_app(...)` (lower-level).
-
-**Accurate Python snippet (FastMCP + Streamable HTTP):**
-```python
-from mcp.server.fastmcp import FastMCP
-
-mcp = FastMCP("My MCP Server")
-
-@mcp.tool
-def ping() -> str:
-    return "pong"
-
-# HTTP-based transport required for OAuth-capable deployments
-app = mcp.streamable_http_app(path="/mcp")
-```
-
-**Lower-level equivalent (explicit constructor):**
-```python
-from mcp.server.fastmcp import FastMCP
-from fastmcp.server.http import create_streamable_http_app
-
-mcp = FastMCP("My MCP Server")
-app = create_streamable_http_app(server=mcp, streamable_http_path="/mcp")
-```
-
-Notes:
-- The imports above match the **official** Python MCP SDK on PyPI (`mcp`). See: `https://pypi.org/project/mcp/1.9.1/`
-- The result is an **ASGI `app`** you run with an ASGI server (e.g. `uvicorn module:app`)—this is **Streamable HTTP**, not stdio.
-- SSE-only transports are not the same as Streamable HTTP; for OAuth with MCP hosts (GitHub Copilot/Cursor/VS Code), use Streamable HTTP. See: `https://gofastmcp.com/python-sdk/fastmcp-server-http`
-  - Example run: `uvicorn your_module:app --host 0.0.0.0 --port 8000`
-
-If your MCP server currently uses stdio transport, you must migrate to HTTP-based transport before implementing OAuth. See [MCP Transport Documentation](https://spec.modelcontextprotocol.io/specification/architecture/#transports) for migration guidance.
+If currently using stdio, migrate to HTTP first. See [MCP Transport Docs](https://spec.modelcontextprotocol.io/specification/architecture/#transports).
 
 ## Setup workflow
 
@@ -320,7 +284,7 @@ The response must include:
 WWW-Authenticate: Bearer realm="OAuth", resource_metadata="https://<your-domain>/.well-known/oauth-protected-resource"
 ```
 This is what triggers the MCP client's OAuth flow. A plain 401 without this header
-will cause AI hosts (GitHub Copilot, Cursor, VS Code) to fail silently.
+will cause AI hosts (Claude Desktop, Cursor, VS Code) to fail silently.
 
 **Check 3 – Confirm metadata endpoint is reachable:**
 ```bash
@@ -328,95 +292,13 @@ curl https://<your-domain>/.well-known/oauth-protected-resource
 ```
 Expected: JSON with `resource`, `authorization_servers`, and `scopes_supported`.
 
-### Testing checklist (after verification passes)
-- [ ] Test with GitHub Copilot
-- [ ] Test with Cursor
-- [ ] Test with VS Code
-- [ ] Verify token validation rejects invalid tokens
-- [ ] Verify scope-based authorization (if implemented)
+After verification passes, test with Claude Desktop, Cursor, and VS Code. Ensure invalid tokens get 401, and scope-based authorization (if implemented) rejects insufficient scopes.
 
-### Production deployment checklist
-- [ ] Configure CORS policies for endpoints
-- [ ] Set up monitoring and logging for auth events
-- [ ] Use HTTPS for all communications
-- [ ] Store credentials in environment variables or secret management
-- [ ] Configure appropriate token lifetimes
-- [ ] Document authentication flow for users
+## Framework-specific references
 
-## Additional authentication methods
-
-Beyond OAuth 2.1, enable these methods through Scalekit (no code changes needed):
-
-**Enterprise SSO**: Organizations authenticate through Okta, Azure AD, Google Workspace
-- Requires organization admins to register domains with Scalekit
-- Centralized access control through enterprise identity systems
-
-**Social logins**: Users authenticate via Google, GitHub, Microsoft
-- Quick onboarding for individual users
-- Reduced friction for personal and small team use
-
-**Custom auth**: Use your own authentication system
-- Integrate existing user management
-- Maintain full control over authentication flow
-
-See Scalekit documentation for configuration details.
-
-## Framework-specific guides
-
-For detailed implementation guides with specific frameworks:
-- **FastMCP**: 5-line integration with Scalekit provider (simplest approach)
-- **Express.js**: Full OAuth implementation with manual middleware (most control)
-- **FastAPI + FastMCP**: Python-based implementation with custom middleware
-
-See [Complete Working Examples](#complete-working-examples) below for production-ready code.
-
-## Complete Working Examples
-
-Production-ready examples demonstrating different implementation approaches:
-
-### FastMCP (5-Line OAuth Integration)
-**Reference:** [fastmcp-reference.md](fastmcp-reference.md)
-- Simplest approach with built-in OAuth provider
-- Automatic token validation and scope enforcement
-- Complete todo server with CRUD operations
-- **GitHub:** [todo-fastmcp](https://github.com/scalekit-inc/mcp-auth-demos/tree/main/todo-fastmcp)
-
-### Express.js (Full Manual OAuth)
-**Reference:** [express-reference.md](express-reference.md)
-- Complete control over authentication middleware
-- Modular architecture with transport, tools, auth layers
-- Production-ready with CORS, logging, error handling
-- **GitHub:** [greeting-mcp-node](https://github.com/scalekit-inc/mcp-auth-demos/tree/main/greeting-mcp-node)
-
-### FastAPI + FastMCP (Custom Middleware)
-**Reference:** [fastapi-reference.md](fastapi-reference.md)
-- Python-based with custom authentication middleware
-- Combines FastAPI's HTTP control with FastMCP's tooling
-- Ideal for existing FastAPI applications
-- **GitHub:** [greeting-mcp-python](https://github.com/scalekit-inc/mcp-auth-demos/tree/main/greeting-mcp-python)
-
-### Scalekit MCP Server (Production Reference)
-**Reference:** [scalekit-mcp-server.md](../../references/scalekit-mcp-server.md)
-- Official Scalekit production implementation
-- Comprehensive tooling for identity management
-- Advanced patterns: scope-based auth, pagination, multi-step operations
-- Demonstrates best practices for complex MCP servers
-- **GitHub:** [scalekit-inc/scalekit-mcp-server](https://github.com/scalekit-inc/scalekit-mcp-server)
-
-### Choosing an Example
-
-| Example | Complexity | Best For | Control Level |
-|----------|-------------|-----------|---------------|
-| FastMCP | Simplest | Quick prototypes, minimal code | Low (automatic) |
-| Express.js | Medium | Production Node.js, custom logic | High (manual) |
-| FastAPI + FastMCP | Medium | Production Python, existing apps | High (manual) |
-| Scalekit Server | Advanced | Complex apps, reference patterns | Very High |
-
-All examples include:
-- Complete source code
-- Setup instructions
-- Environment configuration
-- Testing guidance
+- FastMCP (Python, simplest): [fastmcp-reference.md](fastmcp-reference.md)
+- Express.js (Node.js): [express-reference.md](express-reference.md)
+- FastAPI + FastMCP (Python, custom middleware): [fastapi-reference.md](fastapi-reference.md)
 
 ## Common issues
 
@@ -434,17 +316,4 @@ All examples include:
 - Check token includes required scopes
 - Ensure scope strings match exactly (case-sensitive)
 
-## Architecture summary
 
-**Scalekit OAuth server**:
-- Authenticates users and agents
-- Issues access tokens with scopes
-- Manages OAuth 2.1 flows
-- Supports dynamic client registration
-
-**Your MCP server**:
-- Validates incoming tokens
-- Enforces permissions from token scopes
-- Executes tool calls for authorized requests
-
-This separation ensures clean boundaries: Scalekit handles identity and token issuance, your server focuses on business logic.
