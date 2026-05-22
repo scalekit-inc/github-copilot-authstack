@@ -68,7 +68,10 @@ GET /auth/logout
 def login():
     state = secrets.token_urlsafe(32)
     session["oauth_state"] = state
-    auth_url = sc.get_authorization_url(REDIRECT_URI, options={"state": state})
+    from scalekit.common.scalekit import AuthorizationUrlOptions
+    options = AuthorizationUrlOptions()
+    options.state = state
+    auth_url = sc.get_authorization_url(REDIRECT_URI, options)
     return redirect(auth_url)
 
 @app.get("/auth/callback")
