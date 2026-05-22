@@ -43,8 +43,8 @@ McpServer → Tool Handler → Response
 ### 1. Environment Configuration
 
 **Required variables:**
-- `SK_ENV_URL`: Scalekit environment URL (issuer)
-- `SK_CLIENT_ID` + `SK_CLIENT_SECRET`: SDK authentication credentials
+- `SCALEKIT_ENVIRONMENT_URL`: Scalekit environment URL (issuer)
+- `SCALEKIT_CLIENT_ID` + `SCALEKIT_CLIENT_SECRET`: SDK authentication credentials
 - `EXPECTED_AUDIENCE`: The resource identifier that tokens must target
 - `PROTECTED_RESOURCE_METADATA`: Complete OAuth discovery metadata JSON
 - `PORT`: Server listening port (must match registered server URL)
@@ -53,7 +53,7 @@ McpServer → Tool Handler → Response
 - Never commit `.env` files to version control
 - Add `.env` to `.gitignore` immediately
 - Use secret managers in production (AWS Secrets Manager, Doppler, HashiCorp Vault)
-- Rotate `SK_CLIENT_SECRET` regularly
+- Rotate `SCALEKIT_CLIENT_SECRET` regularly
 - Validate `EXPECTED_AUDIENCE` matches your server's public URL exactly (including trailing slash)
 
 ### 2. Scalekit Client Initialization
@@ -62,9 +62,9 @@ McpServer → Tool Handler → Response
 import { ScalekitClient } from '@scalekit-sdk/node';
 
 const scalekit = new ScalekitClient(
-  SK_ENV_URL,
-  SK_CLIENT_ID,
-  SK_CLIENT_SECRET
+  SCALEKIT_ENVIRONMENT_URL,
+  SCALEKIT_CLIENT_ID,
+  SCALEKIT_CLIENT_SECRET
 );
 ```
 
@@ -774,7 +774,7 @@ See [README.md](https://github.com/scalekit-inc/mcp-auth-demos/tree/main/greetin
 - [Scalekit Node SDK](https://github.com/scalekit-inc/scalekit-sdk-node)
 - [Zod Documentation](https://zod.dev/)
 - [OAuth 2.1 Specification](https://datatracker.ietf.org/doc/html/draft-ietf-oauth-v2-1)
-- [Scalekit MCP Authentication Docs](https://docs.scalekit.com/guides/mcp/)
+- [Scalekit MCP Authentication Docs](https://docs.scalekit.com/authenticate/mcp/quickstart/)
 - [MCP Protocol Specification](https://spec.modelcontextprotocol.io/)
 - [Scalekit MCP Auth Demos](https://github.com/scalekit-inc/mcp-auth-demos/tree/main)
 

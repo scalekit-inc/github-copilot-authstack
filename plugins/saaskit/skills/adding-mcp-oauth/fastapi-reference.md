@@ -42,8 +42,8 @@ FastAPI → MCP Tool Handler → Response
 ### 1. Environment Configuration
 
 **Required variables:**
-- `SK_ENV_URL`: Scalekit environment URL (issuer)
-- `SK_CLIENT_ID` + `SK_CLIENT_SECRET`: SDK authentication credentials
+- `SCALEKIT_ENVIRONMENT_URL`: Scalekit environment URL (issuer)
+- `SCALEKIT_CLIENT_ID` + `SCALEKIT_CLIENT_SECRET`: SDK authentication credentials
 - `EXPECTED_AUDIENCE`: The resource identifier that tokens must target
 - `PROTECTED_RESOURCE_METADATA`: Complete OAuth discovery metadata JSON
 - `PORT`: Server listening port (must match registered server URL)
@@ -51,7 +51,7 @@ FastAPI → MCP Tool Handler → Response
 **Security:**
 - Never commit `.env` files to version control
 - Use secret managers in production (AWS Secrets Manager, HashiCorp Vault)
-- Rotate `SK_CLIENT_SECRET` regularly
+- Rotate `SCALEKIT_CLIENT_SECRET` regularly
 - Validate `EXPECTED_AUDIENCE` matches your server's public URL exactly
 
 ### 2. Middleware Authentication Pattern
@@ -77,7 +77,7 @@ async def auth_middleware(request: Request, call_next):
 
     # Validate with Scalekit SDK
     options = TokenValidationOptions(
-        issuer=SK_ENV_URL,
+        issuer=SCALEKIT_ENVIRONMENT_URL,
         audience=[EXPECTED_AUDIENCE]
     )
 
@@ -402,7 +402,7 @@ See [README.md](https://github.com/scalekit-inc/mcp-auth-demos/tree/main/greetin
 - [FastMCP Documentation](https://github.com/jlowin/fastmcp)
 - [FastAPI Middleware Guide](https://fastapi.tiangolo.com/tutorial/middleware/)
 - [OAuth 2.1 Specification](https://datatracker.ietf.org/doc/html/draft-ietf-oauth-v2-1)
-- [Scalekit MCP Authentication Docs](https://docs.scalekit.com/guides/mcp/)
+- [Scalekit MCP Authentication Docs](https://docs.scalekit.com/authenticate/mcp/quickstart/)
 - [MCP Protocol Specification](https://spec.modelcontextprotocol.io/)
 - [Scalekit MCP Auth Demos](https://github.com/scalekit-inc/mcp-auth-demos/tree/main)
 
