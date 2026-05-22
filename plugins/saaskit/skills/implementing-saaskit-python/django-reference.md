@@ -92,7 +92,8 @@ def callback(request: HttpRequest):
 def logout(request: HttpRequest):
     id_token = request.session.get("id_token", "")
     sc = get_scalekit_client()
-    logout_url = sc.get_logout_url({"post_logout_redirect_uri": "http://localhost:8000"})
+    from scalekit.common.scalekit import LogoutUrlOptions
+    logout_url = sc.get_logout_url(LogoutUrlOptions(post_logout_redirect_uri="http://localhost:8000"))
     request.session.flush()
     return redirect(logout_url)
 ```
