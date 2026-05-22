@@ -55,7 +55,7 @@ pip install scalekit-sdk-python
 
 **Go:**
 ```bash
-go get github.com/scalekit-inc/scalekit-sdk-go
+go get github.com/scalekit-inc/scalekit-sdk-go/v2
 ```
 
 **Java:**

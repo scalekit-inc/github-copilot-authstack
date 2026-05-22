@@ -82,7 +82,7 @@ copilot plugin list
 
 - [Scalekit Documentation](https://docs.scalekit.com) — Complete guides and API reference
 - [MCP Auth guide](https://docs.scalekit.com/authenticate/mcp/quickstart/) — Secure MCP servers
-- [AgentKit overview](https://docs.scalekit.com/agentkit/overview.md) — Connect agents to authenticated tools
+- [AgentKit overview](https://docs.scalekit.com/agentkit/overview) — Connect agents to authenticated tools
 
 #### Resources
 

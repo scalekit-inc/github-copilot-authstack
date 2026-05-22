@@ -86,7 +86,7 @@ def callback(request: Request, code: str, state: str):
 
 @app.get("/auth/logout")
 def logout(request: Request):
-    logout_url = sc.get_logout_url({"post_logout_redirect_uri": "http://localhost:8000"})
+    logout_url = sc.get_logout_url(post_logout_redirect_uri="http://localhost:8000")
     # Clear your session here
     return RedirectResponse(logout_url)
 ```
