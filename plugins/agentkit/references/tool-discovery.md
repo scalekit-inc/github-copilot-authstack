@@ -27,9 +27,9 @@ Use live metadata for:
 
 ## Official Scalekit docs
 
-- [Tools overview](https://docs.scalekit.com/agentkit/tools/overview.md)
-- [Scalekit optimized built-in tools](https://docs.scalekit.com/agentkit/tools/scalekit-optimized-tools.md)
-- [AgentKit connectors](https://docs.scalekit.com/agentkit/connectors.md)
+- [Tools overview](https://docs.scalekit.com/agentkit/tools/overview)
+- [Scalekit optimized built-in tools](https://docs.scalekit.com/agentkit/tools/scalekit-optimized-tools)
+- [AgentKit connectors](https://docs.scalekit.com/agentkit/connectors)
 
 ## Discovery workflow
 
