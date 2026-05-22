@@ -6,16 +6,16 @@
     "name": "Scalekit Inc",
     "email": "support@scalekit.com"
   },
-  "homepage": "https://docs.scalekit.com/agentkit/overview.md",
+  "homepage": "https://docs.scalekit.com/agentkit/overview",
   "repository": "https://github.com/scalekit-inc/github-copilot-authstack",
   "license": "MIT",
   "keywords": ["scalekit", "agentkit", "agent-auth", "oauth", "connectors", "tool-calling"],
   "skills": [
+    "./skills/setup",
     "./skills/integrating-agentkit",
     "./skills/discovering-connector-tools",
     "./skills/exposing-agentkit-via-mcp",
-    "./skills/production-readiness-agentkit",
-    "./skills/scalekit-code-doctor"
+    "./skills/production-readiness-agentkit"
   ],
   "hooks": "./hooks/hooks.json",
   "mcpServers": ".mcp.json"

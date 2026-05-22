@@ -1,5 +1,5 @@
 ---
-name: scalekit-setup
+name: setup-scalekit
 description: Sets up Scalekit env vars, installs/initializes the SDK, and verifies credentials by listing organizations. Use proactively when user asks to set up, install, initialize, configure, or verify Scalekit.
 tools: ["bash", "view", "apply_patch", "glob", "rg"]
 ---
@@ -23,12 +23,7 @@ Workflow:
    - SCALEKIT_ENVIRONMENT_URL
    - SCALEKIT_CLIENT_ID
    - SCALEKIT_CLIENT_SECRET
-3) Install the Scalekit CLI globally:
-   ```bash
-   npm i -g @scalekit-inc/cli
-   ```
-   The CLI provides commands for managing environments, organizations, and auth configurations from the terminal.
-4) Install the SDK (pick the official package for that language).
+3) Install the SDK (pick the official package for that language).
 5) Initialize the SDK client using env vars.
 6) Verify credentials by listing organizations with a small page size.
 7) If verification fails, diagnose systematically:

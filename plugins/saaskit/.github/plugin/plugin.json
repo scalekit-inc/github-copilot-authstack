@@ -12,6 +12,7 @@
   "keywords": ["scalekit", "saaskit", "authentication", "sso", "scim", "mcp-auth", "sessions"],
   "agents": ["./agents"],
   "skills": [
+    "./skills/setup",
     "./skills/implementing-saaskit",
     "./skills/implementing-saaskit-nextjs",
     "./skills/implementing-saaskit-python",
