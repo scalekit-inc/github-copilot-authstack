@@ -1,0 +1,36 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+REPO_SLUG="${COPILOT_AUTHSTACK_REPO:-scalekit-inc/github-copilot-authstack}"
+REPO_REF="${COPILOT_AUTHSTACK_REF:-main}"
+SOURCE_DIR="${COPILOT_AUTHSTACK_SOURCE_DIR:-}"
+
+if [[ -n "$SOURCE_DIR" ]]; then
+  exec "${SOURCE_DIR%/}/scripts/install.sh"
+fi
+
+TMP_DIR="$(mktemp -d)"
+cleanup() {
+  rm -rf "$TMP_DIR"
+}
+trap cleanup EXIT
+
+ARCHIVE_URL="https://github.com/${REPO_SLUG}/archive/refs/heads/${REPO_REF}.tar.gz"
+ARCHIVE_PATH="$TMP_DIR/github-copilot-authstack.tar.gz"
+
+echo "Downloading Scalekit Auth Stack for GitHub Copilot from:"
+echo "  $ARCHIVE_URL"
+
+curl -fsSL "$ARCHIVE_URL" -o "$ARCHIVE_PATH"
+tar -xzf "$ARCHIVE_PATH" -C "$TMP_DIR"
+
+EXTRACTED_DIR="$(find "$TMP_DIR" -mindepth 1 -maxdepth 1 -type d | head -n 1)"
+
+if [[ -z "$EXTRACTED_DIR" ]] || [[ ! -f "$EXTRACTED_DIR/scripts/install.sh" ]]; then
+  echo "Failed to find installer in downloaded archive." >&2
+  exit 1
+fi
+
+chmod +x "$EXTRACTED_DIR/scripts/install.sh"
+exec "$EXTRACTED_DIR/scripts/install.sh"
