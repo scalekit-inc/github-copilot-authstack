@@ -5,7 +5,7 @@
     "email": "support@scalekit.com"
   },
   "metadata": {
-    "description": "GitHub Copilot CLI plugins for authentication",
+    "description": "ARCHIVED. Install from scalekit-inc/authstack instead.",
     "version": "1.0.0"
   },
   "plugins": [

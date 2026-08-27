@@ -1,5 +1,7 @@
 # AGENTS.md
 
+> **Archived.** Do not add skills here. Author in [scalekit-inc/authstack](https://github.com/scalekit-inc/authstack) or [scalekit-inc/skills](https://github.com/scalekit-inc/skills).
+
 > This repository builds GitHub Copilot CLI plugins for marketplace distribution.
 > Read this before writing any code. These rules are non-negotiable.
 
